@@ -1,0 +1,13 @@
+@if(options().length === 0) {
+<p>No Links</p>
+} @else {
+<nav>
+    <ul>
+        @for(option of options(); track option.routerLink) {
+        <li><a [routerLink]="option.routerLink" [id]="option.id">{{option.title}}</a></li>
+        }
+    </ul>
+</nav>
+}
+
+<router-outlet />
