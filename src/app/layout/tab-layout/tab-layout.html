@@ -1,13 +1,14 @@
 @if(options().length === 0) {
 <p>No Links</p>
 } @else {
-<nav>
-    <ul>
+<nav class="pico-background-slate-750">
+    <ul class="container-fluid">
         @for(option of options(); track option.routerLink) {
-        <li><a [routerLink]="option.routerLink" [id]="option.id">{{option.title}}</a></li>
+        <li><a class="pico-color-zinc-50" [routerLink]="option.routerLink" [id]="option.id">{{option.title}}</a></li>
         }
     </ul>
 </nav>
 }
-
-<router-outlet />
+<section class="container-fluid">
+    <router-outlet />
+</section>

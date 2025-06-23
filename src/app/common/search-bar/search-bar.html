@@ -1,14 +1,16 @@
-<input
-  type="search"
-  [placeholder]="placeholder()"
-  [disabled]="effectiveDisabled()"
-  [readonly]="readonly()"
-  [attr.maxlength]="maxlength()"
-  [attr.minlength]="minlength()"
-  [name]="name()"
-  [id]="id()"
-  [value]="value()"
-  (input)="onInput($event)"
-  (blur)="onTouched()"
-  class="search-bar"
-/>
+<div class="container-fluid pico-background-slate-750">
+    <input
+        type="search"
+        [placeholder]="placeholder()"
+        [disabled]="effectiveDisabled()"
+        [readonly]="readonly()"
+        [attr.maxlength]="maxlength()"
+        [attr.minlength]="minlength()"
+        [name]="name()"
+        [id]="id()"
+        [value]="value()"
+        (input)="onInput($event)"
+        (blur)="onTouched()"
+        class="search-bar"
+    />
+</div>

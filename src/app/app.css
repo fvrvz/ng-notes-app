@@ -1,0 +1,5 @@
+.main-body {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100dvh;
+}
