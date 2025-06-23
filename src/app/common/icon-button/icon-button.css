@@ -1,0 +1,14 @@
+button {
+  all: unset;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25em;
+
+  span {
+    font-size: 0.75em;
+  }
+}

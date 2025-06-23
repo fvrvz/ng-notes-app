@@ -1,0 +1,17 @@
+<footer class="pico-background-slate-750">
+    <nav>
+        <ul>
+            @for(option of options(); track option.id) {
+            <li class="pico-color-zinc-50">
+                <app-icon-button
+                    [icon]="option.icon"
+                    [navigateTo]="option.routerLink"
+                    [id]="option.id"
+                    [label]="option.title"
+                    [size]="option.iconSize"
+                />
+            </li>
+            }
+        </ul>
+    </nav>
+</footer>

@@ -1,0 +1,6 @@
+<button (click)="action()">
+    <fa-icon [icon]="icon()" [size]="size()" />
+    @if(label()) {
+    <span>{{label()}}</span>
+    }
+</button>
