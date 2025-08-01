@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
@@ -16,7 +16,14 @@ export class IconButton {
     navigateTo = input<string>();
     label = input<string>();
 
-    private readonly router = inject(Router);
+    readonly #router = inject(Router);
 
-    protected action = computed(() => this.onClick() ?? this.router.navigate([this.navigateTo()]));
+    protected action = () => {
+        const clickHandler = this.onClick();
+        if (clickHandler) {
+            clickHandler();
+        } else {
+            this.#router.navigate([this.navigateTo()]);
+        }
+    };
 }
