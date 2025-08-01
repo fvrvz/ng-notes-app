@@ -33,7 +33,7 @@ export class App {
 
     protected footerOptions: FooterProps[] = [
         {
-            routerLink: '',
+            routerLink: '/',
             title: 'Home',
             id: '1',
             icon: faHome,
