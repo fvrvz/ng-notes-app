@@ -16,14 +16,14 @@ export class IconButton {
     navigateTo = input<string>();
     label = input<string>();
 
-    private readonly router = inject(Router);
+    readonly #router = inject(Router);
 
     protected action = () => {
         const clickHandler = this.onClick();
         if (clickHandler) {
             clickHandler();
         } else {
-            this.router.navigate([this.navigateTo()]);
+            this.#router.navigate([this.navigateTo()]);
         }
     };
 }
