@@ -14,7 +14,8 @@ export class DialogService {
         config?: MatDialogConfig,
     ): MatDialogRef<unknown, TReturn> {
         const dialogConfig: MatDialogConfig = {
-            width: '40rem',
+            width: '80vw',
+            maxWidth: '70rem',
             disableClose: true,
             ...config,
             data,
