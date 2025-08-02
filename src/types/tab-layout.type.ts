@@ -1,5 +1,5 @@
 export type TabLayoutOptions = {
-  routerLink: string;
-  title: string;
-  id: string;
+    routerLink?: string;
+    title: string;
+    id: string;
 };

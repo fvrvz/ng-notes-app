@@ -37,4 +37,5 @@
     "html"
   ],
   "eslint.format.enable": true,
+  "editor.formatOnPaste": true,
 }

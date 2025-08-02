@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { faHome, faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FooterProps } from '../types/footer.type';
 import { TabLayoutOptions } from '../types/tab-layout.type';
+import { CreateNoteDialog, CreateNoteReturnValues } from './common/create-note-dialog/create-note-dialog';
 import { SearchBar } from './common/search-bar/search-bar';
 import { Footer } from './layout/footer/footer';
 import { TabLayout } from './layout/tab-layout/tab-layout';
+import { DialogService } from './services/dialog-service';
 
 @Component({
     selector: 'app-root',
@@ -13,6 +15,8 @@ import { TabLayout } from './layout/tab-layout/tab-layout';
     styleUrl: './app.css',
 })
 export class App {
+    readonly #dialogService = inject(DialogService);
+
     protected tabOptions: TabLayoutOptions[] = [
         {
             routerLink: 'notes',
@@ -39,7 +43,7 @@ export class App {
             icon: faHome,
         },
         {
-            routerLink: 'add',
+            onClick: this.onAddNote.bind(this),
             title: 'Add',
             id: '2',
             icon: faPlus,
@@ -51,4 +55,11 @@ export class App {
             icon: faUser,
         },
     ];
+
+    private onAddNote() {
+        this.#dialogService
+            .openCustomDialog<never, CreateNoteReturnValues>(CreateNoteDialog)
+            .afterClosed()
+            .subscribe((res) => console.log(res));
+    }
 }
