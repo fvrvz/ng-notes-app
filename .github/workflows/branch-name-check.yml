@@ -1,0 +1,27 @@
+name: Check Branch Name
+
+on:
+    push:
+        branches:
+            - '**'
+    pull_request:
+        branches:
+            - '**'
+
+jobs:
+    check-branch-name:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🚀 Check branch name
+              run: |
+                  echo "🔍 Checking branch name..."
+                  BRANCH_NAME="${GITHUB_REF##*/}"
+                  echo "Branch: $BRANCH_NAME"
+
+                  if [[ ! "$BRANCH_NAME" =~ ^(feat|fix|chore|refactor|test|docs)\/[a-z0-9._-]+$ ]]; then
+                    echo "❌ Branch name '$BRANCH_NAME' does not follow the required naming convention."
+                    echo "✅ Use: 'type/short-description', e.g., 'feat/login-page'"
+                    exit 1
+                  else
+                    echo "✅ Branch name follows the convention."
+                  fi

@@ -1,0 +1,28 @@
+name: Auto Label PR by Branch Type
+
+on:
+    pull_request:
+        types: [opened, reopened, synchronize]
+
+jobs:
+    label-pr:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🧠 Determine branch type
+              id: branch
+              run: |
+                  BRANCH_NAME="${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}"
+                  echo "Branch: $BRANCH_NAME"
+                  echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+            - name: 🏷️ Set label based on branch prefix
+              uses: actions-ecosystem/action-add-labels@v1
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  labels: |
+                      ${{ contains(steps.branch.outputs.branch_name, 'feat/') && 'feature' || '' }}
+                      ${{ contains(steps.branch.outputs.branch_name, 'fix/') && 'bug' || '' }}
+                      ${{ contains(steps.branch.outputs.branch_name, 'docs/') && 'documentation' || '' }}
+                      ${{ contains(steps.branch.outputs.branch_name, 'chore/') && 'chore' || '' }}
+                      ${{ contains(steps.branch.outputs.branch_name, 'test/') && 'test' || '' }}
+                      ${{ contains(steps.branch.outputs.branch_name, 'refactor/') && 'refactor' || '' }}

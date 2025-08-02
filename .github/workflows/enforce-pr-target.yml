@@ -1,0 +1,17 @@
+name: Enforce PR Target Branch
+
+on:
+    pull_request:
+        branches:
+            - '**' # Trigger on all branches
+
+jobs:
+    check-pr-target:
+        runs-on: ubuntu-latest
+        if: github.event.pull_request.base.ref != 'develop'
+        steps:
+            - name: ❌ Cancel PR - Target branch is not 'develop'
+              run: |
+                  echo "Pull requests must target 'develop'."
+                  echo "❌ This PR is targeting '${{ github.event.pull_request.base.ref }}'."
+                  exit 1
